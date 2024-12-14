@@ -11,7 +11,6 @@ namespace Template.Services.Mapper
         {
             CreateMap<Client, ClientModel>();
             CreateMap<Address, AddresModel>();
-
             CreateMap<MedicalIllnesses, MedicaIllnessesModel>();
             CreateMap<Consultation, MedicalConsultModel>();
 

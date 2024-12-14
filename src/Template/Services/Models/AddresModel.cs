@@ -2,6 +2,7 @@
 {
     public class AddresModel
     {
+        public Guid Id { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
         public decimal Latituded { get; set; }

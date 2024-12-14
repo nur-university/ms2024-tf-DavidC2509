@@ -35,13 +35,13 @@ namespace Template.Api.Controllers
         ///<summary>
         ///Agregar Direccion
         ///</summary>
-        [HttpPost()]
+        [HttpPost("addres")]
         public Task<ActionResult<bool>> AddAddresClient([FromBody] AddAddresByClientCommand command) => SendRequest(command);
 
         ///<summary>
         ///Agregar Enfermedad
         ///</summary>
-        [HttpPost()]
+        [HttpPost("medical-illneses")]
         public Task<ActionResult<bool>> AddMedicalIllneses([FromBody] AddMedicalIllnessesCommand command) => SendRequest(command);
     }
 }

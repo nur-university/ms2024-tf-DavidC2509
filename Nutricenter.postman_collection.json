@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "d7c22cc0-d3f3-466a-b8dc-e0b8fe21f240",
+		"name": "Nutricenter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37690628"
+	},
+	"item": [
+		{
+			"name": "ListClient",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7176/api/client/list",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7176",
+					"path": [
+						"api",
+						"client",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StoreClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"David\",\r\n  \"phone\": \"Chavez\",\r\n  \"email\": \"davidfernando.chavez777@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7176/api/client",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7176",
+					"path": [
+						"api",
+						"client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetClient",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7176/api/client/802492f1-f8e0-4128-95fd-b19790a18ab6",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7176",
+					"path": [
+						"api",
+						"client",
+						"802492f1-f8e0-4128-95fd-b19790a18ab6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddAddresClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"idClient\": \"802492f1-f8e0-4128-95fd-b19790a18ab6\",\r\n  \"street\": \"Calle 2\",\r\n  \"city\": \"Santa cruz\",\r\n  \"latituded\": 12331230,\r\n  \"longitud\": -3213120\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7176/api/client/addres",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7176",
+					"path": [
+						"api",
+						"client",
+						"addres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddMedicalIllneses",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"idClient\": \"802492f1-f8e0-4128-95fd-b19790a18ab6\",\r\n  \"name\": \"Cancer\",\r\n  \"descripcion\": \"Cancer de mama\",\r\n  \"type\": \"Cancenigerico\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7176/api/client/medical-illneses",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7176",
+					"path": [
+						"api",
+						"client",
+						"medical-illneses"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
