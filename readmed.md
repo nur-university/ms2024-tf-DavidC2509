@@ -37,3 +37,7 @@ https://learn.microsoft.com/en-us/dotnet/aspire/deployment/manifest-format#gener
 # Deploy
 
 azd up --environment production-login
+
+# Projecto Nurtricenter Backend Cliente
+El Microservicio Comercial es un componente central del sistema Nur-tricenter que gestiona todos los aspectos comerciales y contractuales de los servicios nutricionales.
+Este microservicio es responsable de la gestión de aplicacion para pacientes, su usuario cliente, las direcciones y las consultas y sus enfermedades .
