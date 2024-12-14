@@ -87,10 +87,6 @@ namespace Template.Command.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("EmailAddres")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -142,17 +138,17 @@ namespace Template.Command.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<Guid>("ClientId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid>("IdClient")
+                        .HasColumnType("uuid");
+
                     b.Property<Guid>("IdConsultExternal")
                         .HasColumnType("uuid");
 
-                    b.Property<bool?>("Status")
+                    b.Property<bool>("Status")
                         .HasColumnType("boolean");
 
                     b.HasKey("Id");
@@ -192,6 +188,10 @@ namespace Template.Command.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
+                    b.Property<DateTime>("Computed")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dCompDate");
+
                     b.Property<Guid>("IdAppointment")
                         .HasColumnType("uuid");
 
@@ -206,9 +206,6 @@ namespace Template.Command.Migrations
 
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 
@@ -236,7 +233,7 @@ namespace Template.Command.Migrations
             modelBuilder.Entity("Template.Domain.ClientAggregate.MedicalIllnesses", b =>
                 {
                     b.HasOne("Template.Domain.ClientAggregate.Client", null)
-                        .WithMany("MedicalIllnesses")
+                        .WithMany("MedicalIllnessess")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -260,7 +257,7 @@ namespace Template.Command.Migrations
                 {
                     b.Navigation("Addresses");
 
-                    b.Navigation("MedicalIllnesses");
+                    b.Navigation("MedicalIllnessess");
                 });
 
             modelBuilder.Entity("Template.Domain.MedicalConsultationAggregate.Consultation", b =>

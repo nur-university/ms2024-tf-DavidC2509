@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Template.Command.Migrations
 {
     /// <inheritdoc />
-    public partial class AddData : Migration
+    public partial class AddRelation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,8 +18,7 @@ namespace Template.Command.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Phone = table.Column<string>(type: "text", nullable: true),
-                    Email = table.Column<string>(type: "text", nullable: false),
-                    EmailAddres = table.Column<string>(type: "text", nullable: false)
+                    Email = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,9 +31,9 @@ namespace Template.Command.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
                     Descripcion = table.Column<string>(type: "text", nullable: false),
-                    Status = table.Column<bool>(type: "boolean", nullable: true),
-                    ClientId = table.Column<Guid>(type: "uuid", nullable: false),
-                    IdConsultExternal = table.Column<Guid>(type: "uuid", nullable: false)
+                    Status = table.Column<bool>(type: "boolean", nullable: false),
+                    IdConsultExternal = table.Column<Guid>(type: "uuid", nullable: false),
+                    IdClient = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,8 +49,8 @@ namespace Template.Command.Migrations
                     IdClient = table.Column<Guid>(type: "uuid", nullable: false),
                     PreviusDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     NewDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Status = table.Column<bool>(type: "boolean", nullable: false),
-                    RegisterDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    RegisterDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    dCompDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,12 +62,12 @@ namespace Template.Command.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    ClientId = table.Column<Guid>(type: "uuid", nullable: false),
                     Street = table.Column<string>(type: "text", nullable: false),
                     City = table.Column<string>(type: "text", nullable: false),
                     Latituded = table.Column<decimal>(type: "numeric", nullable: false),
                     Longitud = table.Column<decimal>(type: "numeric", nullable: false),
-                    Status = table.Column<bool>(type: "boolean", nullable: false)
+                    Status = table.Column<bool>(type: "boolean", nullable: false),
+                    ClientId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -108,10 +107,9 @@ namespace Template.Command.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
-                    IdConsult = table.Column<Guid>(type: "uuid", nullable: false),
                     Value = table.Column<string>(type: "text", nullable: false),
                     Field = table.Column<string>(type: "text", nullable: false),
-                    ConsultationId = table.Column<Guid>(type: "uuid", nullable: true)
+                    ConsultationId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -120,7 +118,8 @@ namespace Template.Command.Migrations
                         name: "FK_HistoryConsultations_Consultations_ConsultationId",
                         column: x => x.ConsultationId,
                         principalTable: "Consultations",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -129,8 +128,7 @@ namespace Template.Command.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "gen_random_uuid()"),
                     IdDelivery = table.Column<Guid>(type: "uuid", nullable: false),
-                    IdAddres = table.Column<Guid>(type: "uuid", nullable: false),
-                    AddressId = table.Column<Guid>(type: "uuid", nullable: true)
+                    AddressId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -139,7 +137,8 @@ namespace Template.Command.Migrations
                         name: "FK_AddressHistorys_Address_AddressId",
                         column: x => x.AddressId,
                         principalTable: "Address",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

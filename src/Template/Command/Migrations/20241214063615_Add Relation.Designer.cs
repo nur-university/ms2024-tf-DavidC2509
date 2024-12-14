@@ -12,8 +12,8 @@ using Template.Command.Database;
 namespace Template.Command.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20241214004203_Add Data")]
-    partial class AddData
+    [Migration("20241214063615_Add Relation")]
+    partial class AddRelation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,10 +66,7 @@ namespace Template.Command.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<Guid?>("AddressId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IdAddres")
+                    b.Property<Guid>("AddressId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("IdDelivery")
@@ -90,10 +87,6 @@ namespace Template.Command.Migrations
                         .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("EmailAddres")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -148,17 +141,17 @@ namespace Template.Command.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<Guid>("ClientId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid>("IdClient")
+                        .HasColumnType("uuid");
+
                     b.Property<Guid>("IdConsultExternal")
                         .HasColumnType("uuid");
 
-                    b.Property<bool?>("Status")
+                    b.Property<bool>("Status")
                         .HasColumnType("boolean");
 
                     b.HasKey("Id");
@@ -173,15 +166,12 @@ namespace Template.Command.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<Guid?>("ConsultationId")
+                    b.Property<Guid>("ConsultationId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Field")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<Guid>("IdConsult")
-                        .HasColumnType("uuid");
 
                     b.Property<string>("Value")
                         .IsRequired()
@@ -201,6 +191,10 @@ namespace Template.Command.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
+                    b.Property<DateTime>("Computed")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dCompDate");
+
                     b.Property<Guid>("IdAppointment")
                         .HasColumnType("uuid");
 
@@ -215,9 +209,6 @@ namespace Template.Command.Migrations
 
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 
@@ -237,13 +228,15 @@ namespace Template.Command.Migrations
                 {
                     b.HasOne("Template.Domain.ClientAggregate.Address", null)
                         .WithMany("History")
-                        .HasForeignKey("AddressId");
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Template.Domain.ClientAggregate.MedicalIllnesses", b =>
                 {
                     b.HasOne("Template.Domain.ClientAggregate.Client", null)
-                        .WithMany("MedicalIllnesses")
+                        .WithMany("MedicalIllnessess")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -253,7 +246,9 @@ namespace Template.Command.Migrations
                 {
                     b.HasOne("Template.Domain.MedicalConsultationAggregate.Consultation", null)
                         .WithMany("HistoryConsultations")
-                        .HasForeignKey("ConsultationId");
+                        .HasForeignKey("ConsultationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Template.Domain.ClientAggregate.Address", b =>
@@ -265,7 +260,7 @@ namespace Template.Command.Migrations
                 {
                     b.Navigation("Addresses");
 
-                    b.Navigation("MedicalIllnesses");
+                    b.Navigation("MedicalIllnessess");
                 });
 
             modelBuilder.Entity("Template.Domain.MedicalConsultationAggregate.Consultation", b =>

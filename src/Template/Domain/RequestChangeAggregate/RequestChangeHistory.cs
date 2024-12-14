@@ -35,6 +35,7 @@ namespace Template.Domain.RequestChangeAggregate
             PreviusDate = previusDate;
             NewDate = newDate;
             RegisterDate = DateTime.Now.ToUniversalTime();
+            AddNotifiedNutrionEvent();
         }
 
         public static RequestChangeHistory CreateChangeHistory(Guid idAppointment, Guid idClient, DateTime previusDate, DateTime newDate)
