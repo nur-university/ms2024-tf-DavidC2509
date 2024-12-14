@@ -5,7 +5,7 @@ namespace Template.Domain.Events
 {
     public static class DomainEventDispatcher
     {
-        public static void DispatchAndClearEvents(this IMediator mediator, IEnumerable<IDataTenantId> entitiesWithEvents)
+        public static void DispatchAndClearEventsDomain(this IMediator mediator, IEnumerable<IDataTenantId> entitiesWithEvents)
         {
             foreach (var entity in entitiesWithEvents)
             {
@@ -18,7 +18,7 @@ namespace Template.Domain.Events
             }
         }
 
-        public static async Task DispatchAndClearEventsAwait(this IMediator mediator, IEnumerable<IDataTenantId> entitiesWithEvents)
+        public static async Task DispatchAndClearEventsDomaiAwait(this IMediator mediator, IEnumerable<IDataTenantId> entitiesWithEvents)
         {
             foreach (var entity in entitiesWithEvents)
             {

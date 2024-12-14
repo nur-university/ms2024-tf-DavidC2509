@@ -12,8 +12,8 @@ using Template.Command.Database;
 namespace Template.Command.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20241214063615_Add Relation")]
-    partial class AddRelation
+    [Migration("20241214132502_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -190,10 +190,6 @@ namespace Template.Command.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
-
-                    b.Property<DateTime>("Computed")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dCompDate");
 
                     b.Property<Guid>("IdAppointment")
                         .HasColumnType("uuid");

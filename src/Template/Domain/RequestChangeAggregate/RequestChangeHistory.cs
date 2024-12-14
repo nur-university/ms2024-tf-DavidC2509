@@ -5,7 +5,7 @@ using Template.Domain.RequestChangeAggregate.Events;
 
 namespace Template.Domain.RequestChangeAggregate
 {
-    public class RequestChangeHistory : DomainEventEntity, IAggregateRoot
+    public class RequestChangeHistory : BaseEntity, IAggregateRoot, IDataTenantId
     {
         public Guid IdAppointment { get; set; }
         public Guid IdClient { get; set; }
@@ -34,7 +34,9 @@ namespace Template.Domain.RequestChangeAggregate
             IdClient = idClient;
             PreviusDate = previusDate;
             NewDate = newDate;
-            RegisterDate = DateTime.Now.ToUniversalTime();
+            var localDateTime = DateTime.Now; // Hora local
+            RegisterDate = localDateTime.ToUniversalTime();
+
             AddNotifiedNutrionEvent();
         }
 
@@ -49,5 +51,14 @@ namespace Template.Domain.RequestChangeAggregate
             _domainEventsAwait.Add(categoryDefaultEvent);
         }
 
+        public void ClearDomainEvents()
+        {
+            _domainEvents.Clear();
+        }
+
+        public void ClearDomainEventsAwait()
+        {
+            _domainEventsAwait.Clear();
+        }
     }
 }

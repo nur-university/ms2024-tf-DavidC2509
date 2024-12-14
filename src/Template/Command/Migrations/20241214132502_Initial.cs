@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Template.Command.Migrations
 {
     /// <inheritdoc />
-    public partial class AddRelation : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -49,8 +49,7 @@ namespace Template.Command.Migrations
                     IdClient = table.Column<Guid>(type: "uuid", nullable: false),
                     PreviusDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     NewDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    RegisterDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    dCompDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    RegisterDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {

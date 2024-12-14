@@ -19,15 +19,16 @@ namespace Template.Domain.MedicalConsultationAggregate
             _historyConsultations = [];
         }
 
-        internal Consultation(string name, Guid idConsultExternal, bool status) : this()
+        internal Consultation(string name, Guid idConsultExternal, Guid idClient, bool status) : this()
         {
             Descripcion = name;
             IdConsultExternal = idConsultExternal;
             Status = status;
+            IdClient = idClient;
         }
 
         public static Consultation CreateConsult(string name, Guid idConsultExternal, Guid idClient, bool status)
-            => new(name, idConsultExternal, status);
+            => new(name, idConsultExternal, idClient, status);
 
 
     }

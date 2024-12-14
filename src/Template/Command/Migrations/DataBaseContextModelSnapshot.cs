@@ -188,10 +188,6 @@ namespace Template.Command.Migrations
                         .HasColumnType("uuid")
                         .HasDefaultValueSql("gen_random_uuid()");
 
-                    b.Property<DateTime>("Computed")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dCompDate");
-
                     b.Property<Guid>("IdAppointment")
                         .HasColumnType("uuid");
 
