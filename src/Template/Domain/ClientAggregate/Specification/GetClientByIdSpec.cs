@@ -8,7 +8,7 @@ namespace Template.Domain.ClientAggregate.Specification
         {
             Query
                 .Where(c => c.Id.Equals(id))
-                .Include(c => c.Addresses).Include(c => c.MedicalIllnessess);
+                .Include(c => c.Addresses);
         }
     }
 }
