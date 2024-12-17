@@ -1,13 +1,14 @@
 ﻿using Core.Cqrs.Domain;
 using Core.Cqrs.Domain.Domain;
+using Template.Domain.ValueObjects;
 
 namespace Template.Domain.ClientAggregate
 {
     public class Client : BaseEntity, IAggregateRoot
     {
-        public string Name { get; set; }
-        public string? Phone { get; set; }
-        public string Email { get; set; }
+        public string Name { get; private set; }
+        public string? Phone { get; private set; }
+        public EmailValueObject Email { get; private set; }
 
         private readonly List<Address> _addresses;
         public IEnumerable<Address> Addresses => _addresses.AsReadOnly();
@@ -18,25 +19,25 @@ namespace Template.Domain.ClientAggregate
         private Client()
         {
             Name = string.Empty;
-            Email = string.Empty;
             _addresses = [];
             _medicalIllnesses = [];
+            Email = EmailValueObject.Create(string.Empty);
         }
 
         internal Client(string name, string phone, string email) : this()
         {
             Name = name;
             Phone = phone;
-            Email = email;
+            EmailValueObject emailObject = EmailValueObject.Create(email);
+            Email = emailObject;
         }
 
         public static Client CreateClient(string name, string phone, string email)
             => new(name, phone, email);
 
-
         public void AddAddres(string street, string city, decimal latituded, decimal longitud)
         {
-            _addresses.ForEach(address => address.Status = false);
+            _addresses.ForEach(address => address.UpdateStatus(false));
             _addresses.Add(Address.StoreAddres(street, city, latituded, longitud));
         }
 

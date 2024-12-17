@@ -12,8 +12,8 @@ using Template.Command.Database;
 namespace Template.Command.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20241214132502_Initial")]
-    partial class Initial
+    [Migration("20241217193552_Inital")]
+    partial class Inital
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

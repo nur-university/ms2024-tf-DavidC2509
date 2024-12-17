@@ -7,12 +7,12 @@ namespace Template.Domain.RequestChangeAggregate
 {
     public class RequestChangeHistory : BaseEntity, IAggregateRoot, IDataTenantId
     {
-        public Guid IdAppointment { get; set; }
-        public Guid IdClient { get; set; }
+        public Guid IdAppointment { get; private set; }
+        public Guid IdClient { get; private set; }
 
-        public DateTime PreviusDate { get; set; }
-        public DateTime NewDate { get; set; }
-        public DateTime RegisterDate { get; set; }
+        public DateTime PreviusDate { get; private set; }
+        public DateTime NewDate { get; private set; }
+        public DateTime RegisterDate { get; private set; }
 
 
         public IReadOnlyCollection<INotification> DomainEvents => _domainEvents.AsReadOnly();
@@ -42,8 +42,6 @@ namespace Template.Domain.RequestChangeAggregate
 
         public static RequestChangeHistory CreateChangeHistory(Guid idAppointment, Guid idClient, DateTime previusDate, DateTime newDate)
             => new(idAppointment, idClient, previusDate, newDate);
-
-
 
         public void AddNotifiedNutrionEvent()
         {

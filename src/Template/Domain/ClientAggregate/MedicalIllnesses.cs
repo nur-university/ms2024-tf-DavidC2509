@@ -5,10 +5,10 @@ namespace Template.Domain.ClientAggregate
 {
     public class MedicalIllnesses : BaseEntity, IAggregateChild<Client>
     {
-        public string Name { get; set; }
-        public string Descripcion { get; set; }
-        public string Type { get; set; }
-        public DateTime DateFound { get; set; }
+        public string Name { get; private set; }
+        public string Descripcion { get; private set; }
+        public string Type { get; private set; }
+        public DateTime DateFound { get; private set; }
 
         private MedicalIllnesses()
         {

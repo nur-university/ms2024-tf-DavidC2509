@@ -5,6 +5,6 @@ namespace Template.Domain.ClientAggregate
 {
     public class AddressHistory : BaseEntity, IAggregateChild<Address>
     {
-        public Guid IdDelivery { get; set; }
+        public Guid IdDelivery { get; private set; }
     }
 }

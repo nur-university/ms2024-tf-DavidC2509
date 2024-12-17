@@ -5,8 +5,8 @@ namespace Template.Domain.MedicalConsultationAggregate
 {
     public class HistoryConsultation : BaseEntity, IAggregateChild<Consultation>
     {
-        public string Value { get; set; }
-        public string Field { get; set; }
+        public string Value { get; private set; }
+        public string Field { get; private set; }
 
         private HistoryConsultation()
         {
